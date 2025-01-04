@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ZTBros';
+  src: url('ZTBrosOskonRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: unset;
+  --angle: 45deg; 
+  background: linear-gradient(var(--angle), oklab(23.1% 0.001 -0.071), oklab(35.9% 0.006 -0.119));
+  color : white;
+  background-size: 400% 400%;
+  animation: midnight-gradient 15s ease infinite;
+}
+
+@keyframes midnight-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+ 
+}
