@@ -1,7 +1,6 @@
 // App.js
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import Box from "./components/cube";
 import IntroCard from "./components/Intro.js";
 import FishModel from "./components/Fish.js";
 import NavBar from "./components/NavBar.js";
@@ -39,7 +38,7 @@ function App() {
           src = "/assets/arrow-down.png"
           className='absolute h-10 w-10 bottom-5 right-5 cursor-pointer'
           onClick={() => scrollTo(bottom)}
-          
+          alt = "arrow down"
         />
       </div>
 

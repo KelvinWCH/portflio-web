@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+
 import { TypeAnimation } from "react-type-animation";
 
 function IntroCard() {
-    const constantName = "hey, i'm kelvin";
-    const [name, setName] = useState("")
+
 
     return (
         <div className="flex h-1/4 w-full justify-center align-center flex-col gap-5">

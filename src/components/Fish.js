@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useAnimations } from "@react-three/drei";
@@ -9,13 +9,8 @@ function FishModel() {
   const { animations, scene } = gltf; // Extract animations and scene from gltf
   const { actions } = useAnimations(animations, scene); // Bind animations to the scene
   
-  const { size, viewport } = useThree();
+  const { viewport } = useThree();
   const scale = Math.min(viewport.height * 2);
-  const bounds = {
-    left: -size.width / 200,
-    right: size.width / 200,
-  };
-
   const animate = useRef();
 
   // Play animation on component mount
