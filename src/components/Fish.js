@@ -1,49 +1,45 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useLoader, useFrame } from "@react-three/fiber";
-import { TDSLoader } from "three/examples/jsm/loaders/TDSLoader";
-import { TextureLoader } from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useAnimations } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
 function FishModel() {
-  // Load the 3D model and texture
-  const model = useLoader(TDSLoader, "/assets/fish.3ds");
-  const texture = useLoader(TextureLoader, "/assets/fish_texture.png");
-  const [direction, setDirection] = useState(1); // 1 for moving right, -1 for moving left
-  const { size, camera } = useThree();
+  const gltf = useLoader(GLTFLoader, "/assets/goose.glb"); // Load the GLB model
+  const { animations, scene } = gltf; // Extract animations and scene from gltf
+  const { actions } = useAnimations(animations, scene); // Bind animations to the scene
+  
+  const { size, viewport } = useThree();
+  const scale = Math.min(viewport.height * 2);
   const bounds = {
-    left: -size.width / 200, 
+    left: -size.width / 200,
     right: size.width / 200,
   };
 
   const animate = useRef();
 
+  // Play animation on component mount
+  useEffect(() => {
+    console.log(actions);
+    if (actions["Take 001"]) {
+      actions["Take 001"].play();
+    }
+  }, [actions]);
+
   useFrame(() => {
     if (animate.current) {
-        // Update position
-        animate.current.position.x += direction * 0.02;
-        animate.current.rotation.y += 0.01;
-        // Reverse direction when hitting bounds
-        if (animate.current.position.x > bounds.right) {
-          setDirection(-1); // Move left
-        } else if (animate.current.position.x < bounds.left) {
-          setDirection(1); // Move right
-        }
-      }
-  });
-
-  model.traverse((child) => {
-    if (child.isMesh) {
-      child.material.map = texture; // Assign the texture to the material
+      // Update position
+      animate.current.rotation.y += 0.005;
     }
   });
 
   return (
     <primitive
-      ref={animate} // Pass the ref here
-      object={model}
-      scale={0.5}
-      position={[0, 0, 0]}
-      rotation = {[180, 0, 0]}
+      ref={animate} // Pass the ref to the object
+      object={scene} // Use the scene from the GLTF model
+      scale={scale}
+      
+      position={[0,-1,0]}
     />
   );
 }

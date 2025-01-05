@@ -14,12 +14,19 @@ html,
 body,
 #root {
   height: 100%;
-  margin: unset;
+  margin: 0;
   --angle: 45deg; 
-  background: linear-gradient(var(--angle), oklab(23.1% 0.001 -0.071), oklab(35.9% 0.006 -0.119));
-  color : white;
-  background-size: 400% 400%;
-  animation: midnight-gradient 15s ease infinite;
+  background: linear-gradient(
+    var(--angle),
+    #1a131c,
+    #2b1e29,
+    #362538,
+    #3d3250,
+    #4e5572
+  );
+  background-attachment: fixed; /* Keeps the gradient fixed during scrolling */
+  background-size: cover; /* Ensures it covers the full document */
+  color: white;
 }
 
 @keyframes midnight-gradient {
