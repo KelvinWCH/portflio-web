@@ -18,7 +18,7 @@ function NavBar(){
                     src = "/assets/github-mark-white.svg"
                     className= 'h-8 w-8 cursor-pointer'
                     alt="GitHub"
-                    onClick={() => { openInNewTab("https://www.linkedin.com/in/kelvin-chung-536720245/") }}
+                    onClick={() => { openInNewTab("https://github.com/KelvinWCH") }}
                 />
                 <img
                     src = "/assets/goodreads.svg"
